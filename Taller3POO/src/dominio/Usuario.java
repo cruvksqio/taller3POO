@@ -10,32 +10,18 @@ public abstract class Usuario {
 		this.pass=pass;
 	}
 	
-	public static Usuario userFactory(String name, String pass, String rol) //Factory creacion usuarios
-	{
-		switch (rol)
-		{
-		case "Administrador": return new Admin(name, pass);
-		case "Colaborador": return new Colaborador(name,pass);
-		default: return null;
-		}
-	}
 	
-	public void abrirMenu() {}
-	public void salirMenu() {}
-
-
-
-	@Override
-	public String toString() {
-		return "Usuario [name=" + name + ", pass=" + pass + ", getClass()=" + getClass() + "]";
-	}
+	public static void abrirMenu() {}
+	public static void salirMenu() {}
+	
 
 	public String getName() {
 		return name;
 	}
 
-	public String getPass() {
-		return pass;
+	@Override
+	public String toString() {
+		return "Usuario [name=" + name + ", pass=" + pass + ", getClass()=" + getClass() + "]";
 	}
 	
 

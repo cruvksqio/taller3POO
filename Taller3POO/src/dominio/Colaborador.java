@@ -6,7 +6,7 @@ public class Colaborador extends Usuario {
 		super(name, pass);
 	}
 	
-	public void abrirMenu() {
+	public static void abrirMenu() {
 		
 	}
 
