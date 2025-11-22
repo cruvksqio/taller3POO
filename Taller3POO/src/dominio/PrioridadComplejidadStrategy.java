@@ -2,7 +2,18 @@ package dominio;
 
 import java.util.List;
 
+/**
+ * Estrategia concreta de ordenamiento.
+ * Implementa la lógica para ordenar tareas según su nivel de complejidad.
+ * @author Constantino Bekios
+ * @author Luis Molina
+ */
 public class PrioridadComplejidadStrategy implements PrioridadStrategy {
+    
+    /**
+     * Ordena la lista de tareas basándose en su complejidad (Alta, Media, Baja).
+     * @param tareas Lista de tareas a ordenar.
+     */
     @Override
     public void ordenarTareas(List<Tarea> tareas) {
         // Ordenamiento burbuja por complejidad (Alta > Media > Baja)
@@ -22,6 +33,11 @@ public class PrioridadComplejidadStrategy implements PrioridadStrategy {
         System.out.println("Tareas ordenadas por complejidad (Alta > Media > Baja)");
     }
     
+    /**
+     * Convierte el string de complejidad en un valor numérico para comparación.
+     * @param complejidad Texto de complejidad (Alta, Media, Baja).
+     * @return Valor entero representativo (3=Alta, 2=Media, 1=Baja).
+     */
     private int getComplexityValue(String complejidad) {
         if (complejidad == null) return 0;
         if (complejidad.equalsIgnoreCase("alta")) return 3;

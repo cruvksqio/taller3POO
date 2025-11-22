@@ -2,6 +2,12 @@ package dominio;
 
 import java.util.ArrayList;
 
+/**
+ * Clase que representa un Proyecto dentro del sistema.
+ * Contiene la información básica y la lista de tareas asociadas.
+ * @author Constantino Bekios
+ * @author Luis Molina
+ */
 public class Proyecto {
 	
 	private String id;
@@ -9,12 +15,21 @@ public class Proyecto {
 	private String autor;
 	private ArrayList<Tarea> tareas = new ArrayList<>();
 	
+    /**
+     * Constructor del Proyecto.
+     * @param id Identificador único del proyecto.
+     * @param nombre Nombre descriptivo.
+     * @param autor Usuario responsable del proyecto.
+     */
 	public Proyecto(String id, String nombre, String autor) {
 		this.id = id;
 		this.nombre = nombre;
 		this.autor = autor;
 	}
 
+    /**
+     * @return Lista de tareas asociadas al proyecto.
+     */
 	public ArrayList<Tarea> getTareas() {
 		return tareas;
 	}
@@ -32,6 +47,9 @@ public class Proyecto {
 	}
 
 
+    /**
+     * Imprime en consola la información detallada del proyecto y sus tareas.
+     */
 	public void infoProyecto() {
 		
 		System.out.println("*".repeat(20));

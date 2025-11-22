@@ -2,7 +2,18 @@ package dominio;
 
 import java.util.List;
 
+/**
+ * Estrategia concreta de ordenamiento por impacto.
+ * Define la jerarquía: Bug > Feature > Documentación.
+ * @author Constantino Bekios
+ * @author Luis Molina
+ */
 public class PrioridadImpactoStrategy implements PrioridadStrategy {
+    
+    /**
+     * Ordena las tareas basándose en su tipo (Impacto).
+     * @param tareas Lista de tareas a ordenar.
+     */
     @Override
     public void ordenarTareas(List<Tarea> tareas) {
         // Ordenamiento burbuja por tipo (Bug > Feature > Documentación)
@@ -22,6 +33,11 @@ public class PrioridadImpactoStrategy implements PrioridadStrategy {
         System.out.println("Tareas ordenadas por impacto (Bug > Feature > Documentación)");
     }
     
+    /**
+     * Asigna un valor numérico a la prioridad según el tipo de clase.
+     * @param tarea La tarea a evaluar.
+     * @return Valor entero de prioridad (3=Bug, 2=Feature, 1=Doc).
+     */
     private int getPriorityByType(Tarea tarea) {
         if (tarea instanceof Bug) return 3;
         if (tarea instanceof Feature) return 2;

@@ -4,13 +4,29 @@ import java.util.*;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Representa el rol de Administrador en el sistema.
+ * Tiene privilegios para gestionar proyectos, tareas y generar reportes.
+ * @author Constantino Bekios
+ * @author Luis Molina
+ */
 public class Admin extends Usuario {
 
+    /**
+     * Constructor de la clase Admin.
+     * @param name Nombre del administrador.
+     * @param pass Contraseña del administrador.
+     */
     public Admin(String name, String pass) {
         super(name, pass);
     }
     
-    public static void abrirMenu() {
+    /**
+     * Despliega el menú interactivo con las opciones exclusivas del administrador.
+     * Implementa la lógica de selección de opciones.
+     */
+    @Override
+    public void abrirMenu() {
         
         Scanner sc = new Scanner(System.in);
         
@@ -67,7 +83,10 @@ public class Admin extends Usuario {
     }
 
 
-    private static void printearProyectos() {
+    /**
+     * Muestra por consola la información detallada de todos los proyectos.
+     */
+    private void printearProyectos() {
         
         FileManager fm = FileManager.getGestor();
         if (fm.getProyectos().isEmpty()) {
@@ -80,7 +99,11 @@ public class Admin extends Usuario {
         }
     }
     
-    private static void menuProyectos(Scanner sc) {
+    /**
+     * Submenú para la creación y eliminación de proyectos.
+     * @param sc Scanner para leer la entrada del usuario.
+     */
+    private void menuProyectos(Scanner sc) {
         
         int opt = -1;
         
@@ -113,7 +136,11 @@ public class Admin extends Usuario {
         } while (opt != 0);
     }
     
-    private static void crearProyecto(Scanner sc) {
+    /**
+     * Solicita datos al usuario y crea un nuevo proyecto en el sistema.
+     * @param sc Scanner para leer la entrada.
+     */
+    private void crearProyecto(Scanner sc) {
         FileManager fm = FileManager.getGestor();
         
         System.out.println("=== Crear Nuevo Proyecto ===");
@@ -148,7 +175,11 @@ public class Admin extends Usuario {
         System.out.println("Proyecto creado exitosamente! ID: " + nuevoId);
     }
     
-    private static void eliminarProyecto(Scanner sc) {
+    /**
+     * Permite seleccionar y eliminar un proyecto existente junto con sus tareas.
+     * @param sc Scanner para leer la selección del usuario.
+     */
+    private void eliminarProyecto(Scanner sc) {
         FileManager fm = FileManager.getGestor();
         
         System.out.println("=== Eliminar Proyecto ===");
@@ -194,7 +225,11 @@ public class Admin extends Usuario {
         }
     }
     
-    private static void menuTasks(Scanner sc) {
+    /**
+     * Submenú para la gestión de tareas (creación y eliminación).
+     * @param sc Scanner para la entrada de datos.
+     */
+    private void menuTasks(Scanner sc) {
         
         int opt = -1;
         
@@ -228,7 +263,12 @@ public class Admin extends Usuario {
         
     }
     
-    private static void crearTarea(Scanner sc) {
+    /**
+     * Solicita información detallada para crear una nueva tarea en un proyecto específico.
+     * Utiliza TareaFactory para la instanciación.
+     * @param sc Scanner para la entrada de datos.
+     */
+    private void crearTarea(Scanner sc) {
         FileManager fm = FileManager.getGestor();
         
         if (fm.getProyectos().isEmpty()) {
@@ -319,7 +359,11 @@ public class Admin extends Usuario {
         }
     }
     
-    private static void eliminarTarea(Scanner sc) {
+    /**
+     * Permite eliminar una tarea específica de un proyecto seleccionado.
+     * @param sc Scanner para la selección.
+     */
+    private void eliminarTarea(Scanner sc) {
         FileManager fm = FileManager.getGestor();
         
         if (fm.getProyectos().isEmpty()) {
@@ -387,7 +431,11 @@ public class Admin extends Usuario {
         }
     }
     
-    private static void asignarPriorityes(Scanner sc) {
+    /**
+     * Aplica estrategias de priorización (Strategy Pattern) a las tareas de los proyectos.
+     * @param sc Scanner para seleccionar la estrategia (Fecha, Impacto o Complejidad).
+     */
+    private void asignarPriorityes(Scanner sc) {
         FileManager fm = FileManager.getGestor();
         
         System.out.println("=== Asignar Prioridades ===");
@@ -436,7 +484,11 @@ public class Admin extends Usuario {
         }
     }
     
-    private static void makeTxt() {
+    /**
+     * Genera un archivo de texto 'reporte.txt' con estadísticas y detalles de todos los proyectos.
+     * Incluye conteo de tareas por estado y detalle de cada tarea.
+     */
+    private void makeTxt() {
         FileManager fm = FileManager.getGestor();
         
         try (FileWriter writer = new FileWriter("reporte.txt")) {

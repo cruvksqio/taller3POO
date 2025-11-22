@@ -5,6 +5,12 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Clase Singleton encargada de la gestión de datos del sistema.
+ * Maneja la lectura de archivos de texto y mantiene las listas de objetos en memoria.
+ * @author Constantino Bekios
+ * @author Luis Molina
+ */
 public class FileManager { 
 	
 	private static FileManager gestor;
@@ -14,7 +20,10 @@ public class FileManager {
 	public static int contProy = 0;
 	public static int conTask = 0;
 	
-
+    /**
+     * Constructor privado para implementar el patrón Singleton.
+     * Carga los datos de usuarios, proyectos y tareas al iniciar.
+     */
 	private FileManager() {
 		loadUsers();
 		loadProyectos();
@@ -22,7 +31,10 @@ public class FileManager {
 	}
 	
 
-
+    /**
+     * Obtiene la instancia única del gestor de archivos.
+     * @return La instancia de FileManager.
+     */
 	public static FileManager getGestor() {
 		if (gestor == null) {
 			gestor = new FileManager();
@@ -32,6 +44,10 @@ public class FileManager {
 	
 	// Lectura de usuarios, proyectos y tareas 
 	
+    /**
+     * Lee el archivo usuarios.txt y pobla la lista de usuarios.
+     * Utiliza UserFactory para instanciar los usuarios según su rol.
+     */
 	private void loadUsers() {
 		
 		File usertxt = new File("usuarios.txt");
@@ -45,9 +61,10 @@ public class FileManager {
 				// Creacion usuarios con Factory
 				String[] parts = line.split("\\|");
 				if (parts.length==3) {
-					String name = parts[0];
-					String pss = parts[1];
-					String role = parts[2]; 
+					String name = parts[0].trim();
+					String pss = parts[1].trim();
+					String role = parts[2].trim();
+					
 					usuarios.add(UserFactory.crearUser(name, pss, role));   
 					} else { System.out.println("Formato incorrecto del txt!!!"); }
 				}
@@ -55,6 +72,10 @@ public class FileManager {
 	
 	}
 	
+    /**
+     * Lee el archivo proyectos.txt y carga los proyectos en memoria.
+     * Asigna el responsable buscando en la lista de usuarios cargada previamente.
+     */
 	private void loadProyectos() {
 		
 		File proytxt = new File("proyectos.txt");
@@ -86,6 +107,10 @@ public class FileManager {
 		
 	}
 	
+    /**
+     * Lee el archivo tareas.txt y asigna las tareas a sus proyectos correspondientes.
+     * Utiliza TareaFactory para crear las instancias de tareas.
+     */
 	private void loadTareas() {
 		
 		File tasktxt = new File("tareas.txt");
@@ -124,10 +149,16 @@ public class FileManager {
 	}
 	
 	
+    /**
+     * @return Lista de todos los usuarios cargados en el sistema.
+     */
 	public ArrayList<Usuario> getUsuarios() {
 		return usuarios; 
 		}
 	
+    /**
+     * @return Lista de todos los proyectos cargados en el sistema.
+     */
 	public ArrayList<Proyecto> getProyectos()
 	{
 		return proyectos;

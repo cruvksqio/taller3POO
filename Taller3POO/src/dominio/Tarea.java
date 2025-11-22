@@ -1,5 +1,11 @@
 package dominio;
 
+/**
+ * Clase abstracta que representa una tarea genérica en el sistema.
+ * Implementa el patrón Builder para facilitar la construcción de objetos complejos.
+ * @author Constantino Bekios
+ * @author Luis Molina
+ */
 public abstract class Tarea {
 	
 	// Atributos 
@@ -13,6 +19,10 @@ public abstract class Tarea {
 	protected String date;
 	
 	
+    /**
+     * Constructor protegido que utiliza el Builder para inicializar atributos.
+     * @param builder El builder con los datos configurados.
+     */
 	protected Tarea(Builder builder) {
 		
 		this.proyect = builder.proyect;
@@ -25,6 +35,9 @@ public abstract class Tarea {
 		
 	}
 	
+    /**
+     * Clase estática interna para implementar el patrón Builder.
+     */
 	public static abstract class Builder {
 		
 		protected String proyect;
@@ -38,6 +51,10 @@ public abstract class Tarea {
 		
 		// Builder, Setters
 		
+        /**
+         * Constructor del Builder.
+         * @param taskID ID obligatorio de la tarea.
+         */
 		public Builder(String taskID) {
 			this.taskID = taskID;
 		}
@@ -68,6 +85,10 @@ public abstract class Tarea {
 			return this;
 		}
 		
+        /**
+         * Construye y retorna la instancia concreta de Tarea.
+         * @return La tarea construida.
+         */
 		public abstract Tarea build();
 		
 	}
@@ -108,17 +129,29 @@ public abstract class Tarea {
 	                      "Descripcion: " + desc + "\n" +
 	                      "Estado: " + state + "\n" +
 	                      "Usuario a cargo: " + managed + "\n" +
-	                      "Complejidad" + complex + "\n" +
-	                      "Fecha" + date + "\n" +
+	                      "Complejidad " + complex + "\n" +
+	                      "Fecha " + date + "\n" +
 	                      "=".repeat(100);
 		
 		return resultado;/* "ID: " + taskID + "Desc=" + desc + ", state=" + state + ", managed=" + managed + ", complex="
 				+ complex + ", date=" + date + "]"; */
 	}
 	
+	// Metodo abstracto para el patrón Visitor
+    
+    /**
+     * Acepta un visitante para ejecutar operaciones sobre la tarea.
+     * @param visitor El visitante que realizará la operación.
+     */
+    public abstract void accept(Visitor visitor);
 	
+    /**
+     * Actualiza el estado de la tarea.
+     * @param state Nuevo estado.
+     */
+    public void setState(String state) {
+        this.state = state;
+    }
 	
-	
-	
-
+    
 }

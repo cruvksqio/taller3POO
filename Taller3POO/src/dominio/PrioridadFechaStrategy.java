@@ -2,7 +2,19 @@ package dominio;
 
 import java.util.List;
 
+/**
+ * Estrategia concreta de ordenamiento.
+ * Implementa la lógica para ordenar tareas según su fecha de creación.
+ * @author Constantino Bekios
+ * @author Luis Molina
+ */
 public class PrioridadFechaStrategy implements PrioridadStrategy {
+    
+    /**
+     * Ordena una lista de tareas comparando sus fechas (String).
+     * Utiliza el algoritmo de burbuja para el ordenamiento.
+     * @param tareas Lista de tareas a ordenar.
+     */
     @Override
     public void ordenarTareas(List<Tarea> tareas) {
         // Ordenamiento burbuja por fecha
